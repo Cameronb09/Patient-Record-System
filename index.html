@@ -1,14 +1,15 @@
-<!Doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <h1>Create a New Patient</h1>
 
         <link rel="stylesheet" href="style.css">
 
     </head>
 
     <body>
-        <div>Enter the Details of the Patient Here: </div>
+    <h1>Create a New Patient</h1>
+
+    <div>Enter the Details of the Patient Here: </div>
 
         <form id="new">
             <label>First name* <input type="text" id="fName" minlength="2" maxlength="12" required> </label>
@@ -28,15 +29,16 @@
                     <option value="female">Female</option>
                 </select>
             <br>
-            <label>Phone number* <input type="number" id="phone" minlength="11" maxlength="11" required></label> //must start with 07
+            <label>Phone number* <input type="tel" id="phone" minlength="11" maxlength="11" required></label> //must start with 07
             <br>
             <label>Email* <input type="email" id="email" required></label>
             <br>
             <label>Health info <input type="text" id="info"></label>
             <br>
-            <button type="submit" onclick="window.location.href='main.html'">Submit</button>
+            <button type="submit" onclick="window.location.href='success.html'">Submit</button>
 
         </form>
 
+        <script src="form.js"></script>
     </body>
 </html>
