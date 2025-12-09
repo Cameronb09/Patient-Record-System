@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const today = new Date();
 
         if (DOB >= today) {
-         alert("Date of Birth is not in the past or over 120 years ago. ");
+         alert("Date of Birth is not in the past. ");
         return;
         }
-
+// over 120 years
         let age = today.getFullYear() - DOB.getFullYear();
         const m = today.getMonth() - DOB.getMonth();
         if (m < 0 || (m === 0 && today.getDate() <DOB.getDate())){
@@ -27,5 +27,25 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Age must be under 120 years. ");
             return;
         }
+
+       const patient = {
+       firstName: document.getElementById("fName").value,
+       lastName: document.getElementById("lName").value,
+       dob: document.getElementById("DOB").value,
+       height: document.getElementById("height").value,
+       weight: document.getElementById("weight").value,
+       sex: document.getElementById("sex").value,
+       phone: document.getElementById("phone").value,
+       email: document.getElementById("email").value,
+       info: document.getElementById("info").value
+       }
+
+       const patients = JSON.parse(localStorage.getItem("patients")) || [];
+         patients.push(patient);
+         localStorage.setItem("patients", JSON.stringify(patients));
+
+         console.log("New patient added: ", patient);
+         this.reset();
+
     });
  });
