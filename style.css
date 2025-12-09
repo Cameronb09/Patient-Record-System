@@ -1,7 +1,31 @@
 body {
     background-color:#DCDCDC;
+    font-family: verdana;
 }
 
 h1 {
     text-align:center;
+}
+
+.patientDetails {
+    background-color:white;
+}
+
+.box {
+    background-color:white;
+    max-width:25%;
+    height:40px;
+    font-size:1vw;
+    padding:10px;
+}
+
+.box {
+  background-color: white;
+  max-width: 25%;
+  min-width: 200px;       /* ensures they don’t shrink too small */
+}
+
+.box:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-3px); /* lift effect on hover */
 }
