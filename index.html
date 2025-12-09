@@ -1,0 +1,42 @@
+<!Doctype html>
+<html>
+    <head>
+        <h1>Create a New Patient</h1>
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body>
+        <div>Enter the Details of the Patient Here: </div>
+
+        <form id="new">
+            <label>First name* <input type="text" id="fName" minlength="2" maxlength="12" required> </label>
+            <br>
+            <label>Last name* <input type="text" id="lName" minlength="2" maxlength="20" required> </label> //1 hyphen and/ or 2 single quotes not at start or end or adjacent
+            <br>
+            <label>Date of Birth* <input type="date" id="DOB" required></label> //between 0 and 120 years old
+            <br>
+            <label>Height* <input type="number" id="height" min="30" max="200" required></label>
+            <br>
+            <label>Weight* <input type="number" id="weight" min="1" max="200" required></label>
+            <br>
+            <label for="sex">Sex* </label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select an option</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            <br>
+            <label>Phone number* <input type="number" id="phone" minlength="11" maxlength="11" required></label> //must start with 07
+            <br>
+            <label>Email* <input type="email" id="email" required></label>
+            <br>
+            <label>Health info <input type="text" id="info"></label>
+            <br>
+            <button type="submit" onclick="window.location.href='main.html'">Submit</button>
+
+        </form>
+
+    </body>
+</html>
