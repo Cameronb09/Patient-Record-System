@@ -47,5 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
          console.log("New patient added: ", patient);
          this.reset();
 
+        window.location.href="success.html"
     });
  });
