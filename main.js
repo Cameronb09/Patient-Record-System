@@ -19,6 +19,7 @@ patients.forEach(patient => {
         <p><strong>Phone:</strong> ${patient.phone}</p>
         <p><strong>Email:</strong> ${patient.email}</p>
         <p><strong>Health info: </strong> ${patient.info}</p>
+        <p><strong>BMI: </strong> ${patient.BMI}</p>
     `;
     patientList.appendChild(div);
 });

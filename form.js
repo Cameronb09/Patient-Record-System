@@ -28,6 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+//BMI
+const height = parseFloat(document.getElementById("height").value);
+const weight = parseFloat(document.getElementById("weight").value);
+function BMIcalc(weight, height) {
+    if (height <= 0) return null;
+    return weight / ((height / 100) ** 2);
+}
+const BMI = BMIcalc(weight, height);
+const roundedBMI = BMI ? parseFloat(BMI.toFixed(2)) : null;
+
        const patient = {
        firstName: document.getElementById("fName").value,
        lastName: document.getElementById("lName").value,
@@ -37,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
        sex: document.getElementById("sex").value,
        phone: document.getElementById("phone").value,
        email: document.getElementById("email").value,
+       BMI: roundedBMI,
        info: document.getElementById("info").value
        }
 
