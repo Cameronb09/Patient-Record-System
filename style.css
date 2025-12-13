@@ -29,3 +29,8 @@ h1 {
   background-color: #e0e0e0;
   transform: translateY(-3px); /* lift effect on hover */
 }
+
+#fError, #lError, #phoneError {
+    font-size:0.7em;
+    font-weight:bold;
+}
