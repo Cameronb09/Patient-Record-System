@@ -63,6 +63,7 @@ function deletePatient(id) {
     patients = patients.filter(p => p.id !== id);
     localStorage.setItem("patients", JSON.stringify(patients));
     displayPatients(patients);
+    alert("Patient deleted");
 }
 
 });
