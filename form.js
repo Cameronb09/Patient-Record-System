@@ -98,6 +98,7 @@ lNameInput.addEventListener("input", function () {
 
         const BMI = BMIcalc(weight, height);
         const roundedBMI = BMI ? parseFloat(BMI.toFixed(2)) : null;
+        const bmiCategory = getBMIcategory(roundedBMI);
 
         const patient = {
             firstName: document.getElementById("fName").value,
@@ -109,7 +110,9 @@ lNameInput.addEventListener("input", function () {
             phone: document.getElementById("phone").value,
             email: document.getElementById("email").value,
             BMI: roundedBMI,
-            info: document.getElementById("info").value
+            bmiCategory: bmiCategory,
+            info: document.getElementById("info").value,
+            id: genUniqueID()
         };
 
         const patients = JSON.parse(localStorage.getItem("patients")) || [];
@@ -133,5 +136,17 @@ lNameInput.addEventListener("input", function () {
             phoneError.textContent = "";
         }
     });
+
+// unique id:
+     function genUniqueID() {
+        return Math.random().toString(36).substring(2, 8);
+      }
+
+function getBMIcategory(bmi) {
+    if(bmi<18.5) return "Underweight";
+    if(bmi>=18.5 && bmi <24.9) return "Normal";
+    if(bmi>=25.0 && bmi <29.9) return "Overweight";
+    return "Obese";
+}
 
 });
