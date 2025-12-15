@@ -142,6 +142,7 @@ lNameInput.addEventListener("input", function () {
         return Math.random().toString(36).substring(2, 8);
       }
 
+// find the bmi category
 function getBMIcategory(bmi) {
     if(bmi<18.5) return "Underweight";
     if(bmi>=18.5 && bmi <24.9) return "Normal";
@@ -149,4 +150,13 @@ function getBMIcategory(bmi) {
     return "Obese";
 }
 
+
+//delete a patient
+
+//function deletePatient(id) {
+//    let patients = JSON.parse(localStorage.getItem("patients")) || [];
+//    patients = patients.filter(p=> p.id !== id);
+//    localStorage.setItem("patients", JSON.stringify(patients));
+//    displayPatients(patients);
+//}
 });

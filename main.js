@@ -1,18 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   const patientList = document.getElementById("patientList");
-    const searchInput = document.getElementById("searchInput");
-
+  const searchInput = document.getElementById("searchInput");
   const patients = JSON.parse(localStorage.getItem("patients")) || [];
 
-  if (patients.length === 0) {
-    patientList.innerHTML = "<p>No patients added. </p>";
-    return;
-  }
-
-patients.forEach(patient => {
-    const div = document.createElement("div");
-    div.className = "patientDetails";
-    div.innerHTML = `
+  function displayPatients(list) {
+    patientList.innerHTML = "";
+    if (list.length === 0) {
+      patientList.innerHTML = "<p>No patients found.</p>";
+      return;
+    }
+    list.forEach(patient => {
+      const div = document.createElement("div");
+      div.className = "patientDetails";
+      div.innerHTML = `
         <h3>${patient.firstName} ${patient.lastName}</h3>
         <p><strong>DOB: </strong> ${patient.dob}</p>
         <p><strong>Height: </strong> ${patient.height}</p>
@@ -23,28 +23,46 @@ patients.forEach(patient => {
         <p><strong>Health info: </strong> ${patient.info}</p>
         <p><strong>BMI: </strong> ${patient.BMI} (${patient.bmiCategory})</p>
         <p><strong>Patient ID:</strong> ${patient.id}</p>
+        <button class="deleteBtn" data-id="${patient.id}">Delete</button>
+        `;
+      patientList.appendChild(div);
+    });
 
-    `;
-    patientList.appendChild(div);
-});
+    document.querySelectorAll(".deleteBtn").forEach(button => {
+      button.addEventListener("click", function () {
+        const patientDelete = this.getAttribute("data-id");
+        deletePatient(patientDelete);
+      });
+    });
+  }
 
-});
+  displayPatients(patients);
 
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
     const filtered = patients.filter(patient =>
-      patient.firstName.toLowerCase().includes(query) ||
-      patient.lastName.toLowerCase().includes(query) ||
-      patient.dob.toLowerCase().includes(query) ||
-      patient.height.toLowerCase().includes(query) ||
-      patient.weight.toLowerCase().includes(query) ||
-      patient.sex.toLowerCase().includes(query) ||
-      patient.phone.toLowerCase().includes(query) ||
-      patient.email.toLowerCase().includes(query) ||
-      patient.info.toLowerCase().includes(query) ||
-      patient.BMI.toLowerCase().includes(query) ||
-      patient.id.toLowerCase().includes(query)
+      (patient.firstName && patient.firstName.toLowerCase().includes(query)) ||
+      (patient.lastName && patient.lastName.toLowerCase().includes(query)) ||
+      (patient.dob && String(patient.dob).toLowerCase().includes(query)) ||
+      (patient.height && String(patient.height).toLowerCase().includes(query)) ||
+      (patient.weight && String(patient.weight).toLowerCase().includes(query)) ||
+      (patient.sex && patient.sex.toLowerCase().includes(query)) ||
+      (patient.phone && String(patient.phone).toLowerCase().includes(query)) ||
+      (patient.email && patient.email.toLowerCase().includes(query)) ||
+      (patient.info && patient.info.toLowerCase().includes(query)) ||
+      (patient.BMI && String(patient.BMI).toLowerCase().includes(query)) ||
+      (patient.bmiCategory && patient.bmiCategory.toLowerCase().includes(query)) ||
+      (patient.id && patient.id.toLowerCase().includes(query))
+    );
 
-      );
     displayPatients(filtered);
   });
+
+function deletePatient(id) {
+    let patients = JSON.parse(localStorage.getItem("patients")) || [];
+    patients = patients.filter(p => p.id !== id);
+    localStorage.setItem("patients", JSON.stringify(patients));
+    displayPatients(patients);
+}
+
+});
