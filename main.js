@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>BMI: </strong> ${patient.BMI} (${patient.bmiCategory})</p>
         <p><strong>Patient ID:</strong> ${patient.id}</p>
         <button class="deleteBtn" data-id="${patient.id}">Delete</button>
+        <button class="modifyButton" data-id="${patient.id}">Modify</button>
         `;
       patientList.appendChild(div);
     });
@@ -34,6 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
         deletePatient(patientDelete);
       });
     });
+
+    document.querySelectorAll(".modifyButton").forEach(button => {
+          button.addEventListener("click", function () {
+            const patientMod = this.getAttribute("data-id");
+            modifyPatient(patientMod);
+          });
+        });
   }
 
   displayPatients(patients);
@@ -66,4 +74,23 @@ function deletePatient(id) {
     alert("Patient deleted");
 }
 
+//function modifyPatient(id) {
+//    let patients = JSON.parse(localStorage.getItem("patients")) || [];
+//    const patient = patients.find(p => p.id === id);
+//
+//    if (!patient) return;
+//
+//const newFirstName = prompt("Enter new first name", patient.firstName);
+//
+//if (newFirstName ) {
+//    patient.firstName = newFirstName;
+//    localStorage.setItem("patients", JSON.stringify(patients));
+//    displayPatients(patients);
+//    alert("Patient modified");
+//}
+//}
+
+function modifyPatient(id){
+    window.location.href = `index.html?id=${id}`;
+}
 });
