@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const m = today.getMonth() - DOB.getMonth();
     if (m < 0 || (m === 0 && today.getDate() < DOB.getDate())) age--;
     if (age < 0 || age > 120) { alert("Age must be under 120 years."); return; }
+    const patientAge = age;
 
     // BMI calculation
     const height = parseFloat(document.getElementById("height").value);

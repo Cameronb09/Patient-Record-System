@@ -11,13 +11,33 @@
 
 <div>To Search, Enter the Details of a Patient Here: </div>
 
-<input type="text" id="searchInput" placeholder="Search patients..." />
+<input type="text" id="searchInput" placeholder="Search patients...">
 
 
 <button onclick="window.location.href='index.html'">Create a New Patient</button>
+
+<div class="box" onclick="window.location.href='statistics.html'">Go to Statistics</div>
+
+
+<select id="sort">
+    <option value="">Sort by:</option>
+    <option value="firstName">First Name</option>
+    <option value="lastName">Last Name</option>
+    <option value="dob">Date of Birth</option>
+    <option value="BMI">BMI</option>
+</select>
+
+<select id="filter">
+    <option value=""> Filter by:</option>
+    <option value="male">Male Patients</option>
+    <option value="female">Female Patients</option>
+    <option value="Underweight">Underweight BMI</option>
+    <option value="Normal">Normal BMI</option>
+    <option value="Overweight">Overweight BMI</option>
+    <option value="Obese">Obese BMI</option>
+</select>
+
 <div id="patientList"></div>
-
-
 
 <script src="main.js"></script>
 </body>
