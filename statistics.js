@@ -40,6 +40,7 @@ bmiNumbers.innerHTML = `
     <p>Number of Patients Obese: ${obese}</p>
 `;
 
+//female average bmi
 const femalePatients = allPatients.filter(p => p.sex && p.sex.toLowerCase() === "female");
 console.log(allPatients.map(p => p.sex));
 
@@ -52,5 +53,21 @@ console.log(femalePatients);
 console.log(allPatients);
     const patientCount = document.getElementById("patientCount");
 patientCount.innerHTML += `<p>Average BMI for female patients: ${averageFBMI.toFixed(2)}</p>`;
-});
 
+//male average bmi
+const malePatients = allPatients.filter(p => p.sex && p.sex.toLowerCase() === "male");
+console.log(allPatients.map(p => p.sex));
+
+let averageMBMI = 0;
+if (malePatients.length > 0) {
+    const totalBMI = malePatients.reduce((sum, p) => sum + (p.BMI), 0);
+    averageMBMI = totalBMI / malePatients.length;
+    }
+console.log(malePatients);
+console.log(allPatients);
+   // const patientCount = document.getElementById("patientCount");
+patientCount.innerHTML += `<p>Average BMI for male patients: ${averageMBMI.toFixed(2)}</p>`;
+
+console.log(malePatients.map(p => p.BMI));
+
+});
