@@ -65,9 +65,25 @@ if (malePatients.length > 0) {
     }
 console.log(malePatients);
 console.log(allPatients);
-   // const patientCount = document.getElementById("patientCount");
 patientCount.innerHTML += `<p>Average BMI for male patients: ${averageMBMI.toFixed(2)}</p>`;
 
 console.log(malePatients.map(p => p.BMI));
+
+
+//female patients which are over 50
+function calculateAge(dobString) {
+  const dob = new Date(dobString);
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+  return age;
+}
+
+const femalePatients50 = allPatients.filter(p =>
+  p.sex && p.sex.toLowerCase() === "female" && calculateAge(p.dob) >= 50
+);
+const femalesOver50 = femalePatients50.length;
+patientCount.innerHTML += `<p>Total female patients aged 50+: ${femalesOver50}</p>`;
 
 });
