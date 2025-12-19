@@ -11,7 +11,7 @@ h1 {
     background-color:white;
 }
 
-.box {
+.box, button {
     background-color:white;
     max-width:25%;
     height:40px;
@@ -19,15 +19,15 @@ h1 {
     padding:10px;
 }
 
-.box {
-  background-color: white;
-  max-width: 25%;
-  min-width: 200px;       /* ensures they don’t shrink too small */
+.box, button {
+    background-color: white;
+    max-width: 25%;
+    min-width: 200px;
 }
 
-.box:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-3px); /* lift effect on hover */
+.box:hover, button:hover {
+    background-color: #A9A9A9;
+    transform: translateY(-3px);
 }
 
 #fError, #lError, #phoneError {

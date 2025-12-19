@@ -23,13 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
         <p><strong>Health info: </strong> ${patient.info}</p>
         <p><strong>BMI: </strong> ${patient.BMI} (${patient.bmiCategory})</p>
         <p><strong>Patient ID:</strong> ${patient.id}</p>
-        <button class="deleteBtn" data-id="${patient.id}">Delete</button>
+        <button class="deleteButton" data-id="${patient.id}">Delete</button>
         <button class="modifyButton" data-id="${patient.id}">Modify</button>
         `;
       patientList.appendChild(div);
     });
 
-    document.querySelectorAll(".deleteBtn").forEach(button => {
+    document.querySelectorAll(".deleteButton").forEach(button => {
       button.addEventListener("click", function () {
         const patientDelete = this.getAttribute("data-id");
         deletePatient(patientDelete);
@@ -74,23 +74,47 @@ function deletePatient(id) {
     alert("Patient deleted");
 }
 
-//function modifyPatient(id) {
-//    let patients = JSON.parse(localStorage.getItem("patients")) || [];
-//    const patient = patients.find(p => p.id === id);
-//
-//    if (!patient) return;
-//
-//const newFirstName = prompt("Enter new first name", patient.firstName);
-//
-//if (newFirstName ) {
-//    patient.firstName = newFirstName;
-//    localStorage.setItem("patients", JSON.stringify(patients));
-//    displayPatients(patients);
-//    alert("Patient modified");
-//}
-//}
-
 function modifyPatient(id){
     window.location.href = `index.html?id=${id}`;
 }
+
+//sort patients
+const sort = document.getElementById("sort");
+
+sort.addEventListener("change", function () {
+  const sortBy = this.value;
+  let sorted = [...patients];
+
+  if (sortBy) {
+    sorted.sort((a, b) => {
+      if (sortBy === "dob") {
+        return new Date(a.dob) - new Date(b.dob);
+      }
+      if (sortBy === "BMI") {
+        return a.BMI - b.BMI;
+      }
+      return a[sortBy].toString().localeCompare(b[sortBy].toString());
+    });
+  }
+
+  displayPatients(sorted);
+});
+
+//filter patients
+
+const filter = document.getElementById("filter");
+
+filter.addEventListener("change", function () {
+  const filterBy = this.value.toLowerCase();
+  let filtered = patients;
+
+  if (filterBy) {
+    filtered = patients.filter(p =>
+      p.sex.toLowerCase() === filterBy || p.bmiCategory.toLowerCase() === filterBy
+    );
+  }
+
+  displayPatients(filtered);
+});
+
 });
